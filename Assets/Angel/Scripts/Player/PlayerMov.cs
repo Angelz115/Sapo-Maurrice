@@ -37,4 +37,8 @@ public class PlayerMov : MonoBehaviour
         scaler.x *= -1;
         transform.localScale = scaler;
     }
+    public void Parar()
+    {
+        rb.velocity = new Vector2(0, 0);
+    }
 }

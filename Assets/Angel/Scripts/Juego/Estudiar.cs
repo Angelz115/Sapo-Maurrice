@@ -8,7 +8,7 @@ public class Estudiar : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("Estudiar");
+            GameManager.Instance.EmperzarEstudio();
 
         }
     }
