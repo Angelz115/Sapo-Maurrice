@@ -13,7 +13,6 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
-        estres = 4;
         /*
         estres = PlayerPrefs.GetInt("EstresPrefs");
         sociabilidad = PlayerPrefs.GetInt("SociabilidadPrefs");

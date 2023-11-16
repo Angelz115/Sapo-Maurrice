@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject player;
+    public float timeTest;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Comenzar a estudiar");
         //prepar el minijuego
-        Invoke("prenderUIEstudio", 1);
+        Invoke("prenderUIEstudio", timeTest);
         player.GetComponent<PlayerStats>().animator.SetBool("Estudiando", true);
         player.GetComponent<PlayerMov>().Parar();
         player.GetComponent<PlayerMov>().enabled = false;
