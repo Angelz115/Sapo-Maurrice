@@ -80,7 +80,7 @@ public class SpwnerV2 : MonoBehaviour
         Obj.GetComponent<Pop>().nuevoColor = colorObjetivo[Objetivo[recorridoLista]];
         Obj.GetComponent<Pop>().objectivo = objetivos[Objetivo[recorridoLista]];
         Obj.GetComponent<Pop>().fuerza = fuerza;
-        
+        Obj.GetComponent<Pop>().objetivoN = Objetivo[recorridoLista];
         temporizador = 0;
         recorridoLista++;
     }

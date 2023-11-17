@@ -4,5 +4,15 @@ using UnityEngine;
 
 public class Tap : MonoBehaviour
 {
-    public int tap;
+    [SerializeField] KeyCode tecla;
+    [SerializeField] int id;
+
+    public int SacarId() 
+    {
+        return id; 
+    }
+    public KeyCode SacarTecla() 
+    {
+        return tecla;
+    }
 }
