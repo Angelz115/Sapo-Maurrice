@@ -18,10 +18,8 @@ public class Pop : MonoBehaviour
     void Start()
     {
         GetComponent<Image>().color = nuevoColor;
-        Destroy(gameObject, 16);
-        
         Vector2 direccion = new Vector2(objectivo.position.x- transform.position.x, objectivo.position.y - transform.position.y);
-        rb.AddForce(direccion * fuerza);
+        rb.AddForce(direccion.normalized * fuerza);
     }
     private void Update()
     {
@@ -45,6 +43,10 @@ public class Pop : MonoBehaviour
                 estaTecla = collision.GetComponent<Tap>().SacarTecla();
                 puedoPresionar = true;
             }
+        }
+        if (collision.CompareTag("Pop"))
+        {
+            Destroy(gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)

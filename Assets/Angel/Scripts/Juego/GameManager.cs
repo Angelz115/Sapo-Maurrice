@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public enum Actividad {estudiar, socializar, dormir, relajarse}
 public enum Tiempo {mañana, tarde, noche}
@@ -8,7 +10,9 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject player;
-    public float timeTest;
+    
+    public GameObject cajaTexto;
+    public TextMesh tryM;
     private void Awake()
     {
         player = GameObject.FindWithTag("Player");
@@ -24,17 +28,23 @@ public class GameManager : MonoBehaviour
         }
         
     }
+    public void PreguntarSi(string text) 
+    {
+        cajaTexto.SetActive(true);
+        cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = text;
+        player.GetComponent<PlayerMov>().Parar();
+        player.GetComponent<PlayerMov>().enabled = false;
 
+    }
+    
     #region ESTUDIAR
     public void EmperzarEstudio() 
     {
         Debug.Log("Comenzar a estudiar");
         //prepar el minijuego
-        Invoke("prenderUIEstudio", timeTest);
+        Invoke("prenderUIEstudio", 1.35f);
         player.GetComponent<PlayerStats>().animator.SetBool("Estudiando", true);
-        player.GetComponent<PlayerMov>().Parar();
-        player.GetComponent<PlayerMov>().enabled = false;
-
+        cajaTexto.SetActive(false);
     }
     public void TerminarEstudio() 
     {
@@ -47,8 +57,9 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void reanudarMovimiento()
+    public void reanudarMovimiento()
     {
+        cajaTexto.SetActive(false);
         player.GetComponent<PlayerMov>().enabled = true;
     }
     private void prenderUIEstudio() 
@@ -119,7 +130,7 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    /*
+    
     public void EmpezarActividad(Actividad quehacer)
     {
         switch (quehacer)
@@ -138,6 +149,7 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
+    
     public void TerminarActividad(Actividad quehacer)
     {
         switch (quehacer)
@@ -157,6 +169,6 @@ public class GameManager : MonoBehaviour
 
         }
     }
-    */
+    
 }
 

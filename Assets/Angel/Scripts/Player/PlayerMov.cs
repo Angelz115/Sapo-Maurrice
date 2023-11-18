@@ -9,6 +9,7 @@ public class PlayerMov : MonoBehaviour
     private Rigidbody2D rb;
 
     private bool facingRightn = true;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,7 +20,15 @@ public class PlayerMov : MonoBehaviour
     {
         moveInput = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        if (moveInput != 0)
+        {
+            anim.SetBool("Moverse", true);
 
+        }
+        else
+        {
+            anim.SetBool("Moverse", false);
+        }
         if (facingRightn == false && moveInput > 0)
         {
             flip();
@@ -40,5 +49,6 @@ public class PlayerMov : MonoBehaviour
     public void Parar()
     {
         rb.velocity = new Vector2(0, 0);
+        anim.SetBool("Moverse", false);
     }
 }

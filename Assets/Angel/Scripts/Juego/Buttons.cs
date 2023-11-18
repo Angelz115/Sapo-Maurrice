@@ -18,6 +18,14 @@ public class Buttons : MonoBehaviour
         UI.SetActive(true);
     }
     #endregion
-
+    
+    public void No() 
+    {
+        GameManager.Instance.reanudarMovimiento();
+    }
+    public void SiEstudio() 
+    {
+        GameManager.Instance.EmperzarEstudio();
+    }
     
 }

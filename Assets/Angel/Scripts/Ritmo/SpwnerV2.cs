@@ -29,17 +29,22 @@ public class SpwnerV2 : MonoBehaviour
 
     [SerializeField] List<int> Origen = new List<int>();
     [SerializeField] List<int> Objetivo = new List<int>();
-
+    public bool termino;
 
     private void Start()
     {
         Asignar();
+        termino = false;
     }
     private void Update()
     {
-        if (recorridoLista >= cantidad)
+        if (termino)
         {
             return;
+        }
+        if (recorridoLista >= cantidad)
+        {
+            Invoke("TerminarRitmo", 5);
         }
         temporizador += Time.deltaTime;
         if (temporizador >= entreTiempo)
@@ -50,10 +55,10 @@ public class SpwnerV2 : MonoBehaviour
     private void Asignar() 
     {
         estres = GameManager.Instance.SacarEstres();
-
+        termino = false;
         if (estres == 0)
         {
-            cantidad = 60;
+            cantidad = 10;
             entreTiempo = test2;
         }
         else
@@ -84,7 +89,12 @@ public class SpwnerV2 : MonoBehaviour
         temporizador = 0;
         recorridoLista++;
     }
-
+    private void TerminarRitmo() 
+    {
+        GameManager.Instance.TerminarEstudio();
+        
+        termino = true;
+    }
 }
 /*
  * public void sacarStats() 

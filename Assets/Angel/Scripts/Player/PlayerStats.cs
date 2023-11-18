@@ -11,15 +11,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] int conocimiento;
     public Animator animator;
 
-    private void Start()
-    {
-        /*
-        estres = PlayerPrefs.GetInt("EstresPrefs");
-        sociabilidad = PlayerPrefs.GetInt("SociabilidadPrefs");
-        cansancio = PlayerPrefs.GetInt("CansancioPrefs");
-        conocimiento = PlayerPrefs.GetInt("ConocimientoPrefs");
-        */
-    }
+    
     private void Update()
     {
         
