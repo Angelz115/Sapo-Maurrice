@@ -12,15 +12,7 @@ public class PlayerStats : MonoBehaviour
     public Animator animator;
 
     
-    private void Update()
-    {
-        
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            GameManager.Instance.TerminarEstudio();
-        }
-
-    }
+    
     public int valorEstres() 
     {
         return estres;

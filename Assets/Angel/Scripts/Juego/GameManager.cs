@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public enum Actividad {estudiar, socializar, dormir, relajarse}
+public enum Actividad {estudiar, socializar, dormir, relajarse, salir}
 public enum Tiempo {mañana, tarde, noche}
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +12,12 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     
     public GameObject cajaTexto;
+    public GameObject cajaEstudio;
+    public GameObject cajaSocializar;
+    public GameObject cajaDormir;
+    public GameObject cajaRelajo;
+    public GameObject cajaSalir;
+    public GameObject si_no;
     public TextMesh tryM;
     private void Awake()
     {
@@ -28,15 +34,49 @@ public class GameManager : MonoBehaviour
         }
         
     }
-    public void PreguntarSi(string text) 
+    public void PreguntarSi(string text, Actividad actividad) 
     {
         cajaTexto.SetActive(true);
         cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = text;
         player.GetComponent<PlayerMov>().Parar();
         player.GetComponent<PlayerMov>().enabled = false;
 
+        switch (actividad)
+        {
+            case Actividad.estudiar:
+                //cajaEstudio.SetActive(true);
+                si_no = cajaEstudio;
+                break;
+            case Actividad.socializar:
+                //cajaSocializar.SetActive(true);
+                si_no = cajaSocializar;
+                break;
+            case Actividad.dormir:
+                //cajaDormir.SetActive(true);
+                si_no = cajaDormir;
+                break;
+            case Actividad.relajarse:
+                //cajaRelajo.SetActive(true);
+                si_no = cajaRelajo;
+                break;
+            case Actividad.salir:
+                //cajaSalir.SetActive(true);
+                si_no = cajaSalir;
+                break;
+            
+        }
+        
+        si_no.SetActive(true);
     }
     
+
+    public void reanudarMovimiento()
+    {
+        cajaTexto.SetActive(false);
+        si_no.SetActive(false);
+        
+        player.GetComponent<PlayerMov>().enabled = true;
+    }
     #region ESTUDIAR
     public void EmperzarEstudio() 
     {
@@ -55,12 +95,6 @@ public class GameManager : MonoBehaviour
         Invoke("reanudarMovimiento", 1);
 
         
-    }
-
-    public void reanudarMovimiento()
-    {
-        cajaTexto.SetActive(false);
-        player.GetComponent<PlayerMov>().enabled = true;
     }
     private void prenderUIEstudio() 
     {

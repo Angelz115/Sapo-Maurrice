@@ -18,7 +18,7 @@ public class Buttons : MonoBehaviour
         UI.SetActive(true);
     }
     #endregion
-    
+    #region RESPUESTA
     public void No() 
     {
         GameManager.Instance.reanudarMovimiento();
@@ -27,5 +27,21 @@ public class Buttons : MonoBehaviour
     {
         GameManager.Instance.EmperzarEstudio();
     }
-    
+    public void SiSocializar() 
+    {
+        GameManager.Instance.EmpezrSocializar();
+    }
+    public void SiDormir() 
+    {
+        GameManager.Instance.EmpezarDormir();
+    }
+    public void SiRelajarse() 
+    {
+        GameManager.Instance.EmpezarRelajarse();
+    }
+    public void SiSalir() 
+    { 
+        
+    }
+    #endregion
 }
