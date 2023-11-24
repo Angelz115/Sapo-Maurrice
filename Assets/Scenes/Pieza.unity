@@ -4079,7 +4079,7 @@ MonoBehaviour:
     m_VirtualCamera: {fileID: 2029483596}
     m_ActivateAfter: 0
     m_MinDuration: 0
-  - m_FullHash: -380603391
+  - m_FullHash: -1546931671
     m_VirtualCamera: {fileID: 1912648379}
     m_ActivateAfter: 0
     m_MinDuration: 0
@@ -4096,9 +4096,9 @@ MonoBehaviour:
   m_ParentHash:
   - m_Hash: 426535774
     m_ParentHash: 756556552
-  - m_Hash: -380603391
-    m_ParentHash: 756556552
   - m_Hash: -132215697
+    m_ParentHash: 756556552
+  - m_Hash: -1546931671
     m_ParentHash: 756556552
 --- !u!4 &1018348622
 Transform:
@@ -5407,7 +5407,7 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 3
+    OrthographicSize: 2.5
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
