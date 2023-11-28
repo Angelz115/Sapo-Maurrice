@@ -5,12 +5,19 @@ using UnityEngine.UI;
 using TMPro;
 
 public enum Actividad {estudiar, socializar, dormir, relajarse, salir}
-public enum Tiempo {mañana, tarde, noche}
+public enum Horario {mañana, tarde, noche}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public GameObject player;
-    
+    [Space]
+
+    [Header("Manejo Orario")]
+    [SerializeField] Horario horarioActual;
+    [SerializeField] int dias;
+    [Space]
+
+    [Header("Cajas de texto")]
     public GameObject cajaTexto;
     public GameObject cajaEstudio;
     public GameObject cajaSocializar;
@@ -83,7 +90,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Comenzar a estudiar");
         //prepar el minijuego
         Invoke("prenderUIEstudio", 1.35f);
-        player.GetComponent<PlayerStats>().animator.SetBool("Estudiando", true);
+        player.GetComponent<PlayerMov>().anim.SetBool("Estudiando", true);
         cajaTexto.SetActive(false);
     }
     public void TerminarEstudio() 
@@ -91,10 +98,11 @@ public class GameManager : MonoBehaviour
         
         GameObject ui = GameObject.FindGameObjectWithTag("Ritmo");
         ui.GetComponent<Prender>().ApagarUI();
-        player.GetComponent<PlayerStats>().animator.SetBool("Estudiando", false);
+        player.GetComponent<PlayerMov>().anim.SetBool("Estudiando", false);
         Invoke("reanudarMovimiento", 1);
+        player.GetComponent<PlayerStats>().subirConocimiento(1);
+        TerminarActividad();
 
-        
     }
     private void prenderUIEstudio() 
     {
@@ -124,6 +132,8 @@ public class GameManager : MonoBehaviour
     public void TerminarRelajarse() 
     {
         Debug.Log("termino de relajarse");
+        player.GetComponent<PlayerStats>().bajarCansancio(1);
+        player.GetComponent<PlayerStats>().bajarEstres(1);
     }
 
     #endregion
@@ -136,6 +146,9 @@ public class GameManager : MonoBehaviour
     public void TerminarDormir() 
     {
         Debug.Log("termino de dormir");
+        TerminarActividad();
+        player.GetComponent<PlayerStats>().bajarCansancio(3);
+        player.GetComponent<PlayerStats>().bajarEstres(2);
     }
 
     #endregion
@@ -184,23 +197,22 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void TerminarActividad(Actividad quehacer)
+    public void TerminarActividad()
     {
-        switch (quehacer)
+        switch (horarioActual)
         {
-            case Actividad.estudiar:
-                TerminarEstudio();
+            case Horario.mañana:
+                horarioActual = Horario.tarde;
                 break;
-            case Actividad.socializar:
-                TerminarSocializar();
+            case Horario.tarde:
+                horarioActual = Horario.noche;
                 break;
-            case Actividad.dormir:
-                TerminarDormir();
+            case Horario.noche:
+                horarioActual = Horario.mañana;
+                dias++;
+                player.GetComponent<PlayerStats>().subirEstres(1);
                 break;
-            case Actividad.relajarse:
-                TerminarRelajarse();
-                break;
-
+            
         }
     }
     

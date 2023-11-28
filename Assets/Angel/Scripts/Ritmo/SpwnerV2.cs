@@ -14,6 +14,7 @@ public class SpwnerV2 : MonoBehaviour
     [SerializeField] List<Color> colorObjetivo = new List<Color>();
 
     public float test, test2;
+    public int test3;
 
     [Space]
 
@@ -38,13 +39,15 @@ public class SpwnerV2 : MonoBehaviour
     }
     private void Update()
     {
-        if (termino)
+        if (termino == true)
         {
+            
             return;
         }
         if (recorridoLista >= cantidad)
         {
-            Invoke("TerminarRitmo", 5);
+            Invoke("TerminarRitmo", 3);
+            return;
         }
         temporizador += Time.deltaTime;
         if (temporizador >= entreTiempo)
@@ -55,18 +58,21 @@ public class SpwnerV2 : MonoBehaviour
     private void Asignar() 
     {
         estres = GameManager.Instance.SacarEstres();
-        termino = false;
+        cantidad = test3;
+        entreTiempo = test2;
+        /*
         if (estres == 0)
         {
-            cantidad = 10;
+            cantidad = test3;
             entreTiempo = test2;
         }
+        
         else
         {
-            cantidad = estres * 2 + 60;
+            cantidad = estres * 2;
             entreTiempo = test / estres;
         }
-
+        */
         for (int i = 0; i < cantidad; i++)
         {
             Origen.Add(random());
@@ -94,6 +100,16 @@ public class SpwnerV2 : MonoBehaviour
         GameManager.Instance.TerminarEstudio();
         
         termino = true;
+        Destroy(gameObject);
+    }
+    public void setList(List<Transform> creacion, List<Transform> objetivo) 
+    {
+        for (int i = 0; i < creacion.Count; i++)
+        {
+            posicionCreacion.Add(creacion[i]);
+            objetivos.Add(objetivo[i]);
+            
+        }
     }
 }
 /*
