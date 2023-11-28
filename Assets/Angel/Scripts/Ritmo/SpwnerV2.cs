@@ -46,7 +46,7 @@ public class SpwnerV2 : MonoBehaviour
         }
         if (recorridoLista >= cantidad)
         {
-            Invoke("TerminarRitmo", 3);
+            Invoke("TerminarRitmo", 4);
             return;
         }
         temporizador += Time.deltaTime;

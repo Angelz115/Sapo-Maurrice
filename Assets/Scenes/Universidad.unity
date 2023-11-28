@@ -2293,6 +2293,7 @@ MonoBehaviour:
   - {r: 0, g: 0.047058824, b: 1, a: 1}
   test: 5
   test2: 3
+  test3: 0
   estres: 0
   cantidad: 0
   recorridoLista: 0
@@ -2479,6 +2480,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   UI: {fileID: 1493722079}
+  spawner: {fileID: 0}
+  posicionCreacion: []
+  objetivos: []
 --- !u!1 &1839445890
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,6 +3033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  horarioActual: 0
+  dias: 0
   cajaTexto: {fileID: 65355011}
   cajaEstudio: {fileID: 0}
   cajaSocializar: {fileID: 0}
@@ -3184,6 +3190,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 668115624}
     m_Modifications:
+    - target: {fileID: 5539123769058995073, guid: 7af0d0bc4c341a14fbb866bd693fd205, type: 3}
+      propertyPath: m_text
+      value: "\xBFQuieres \n?"
+      objectReference: {fileID: 0}
     - target: {fileID: 5539123769135749650, guid: 7af0d0bc4c341a14fbb866bd693fd205, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

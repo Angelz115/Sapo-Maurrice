@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
         cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = text;
         player.GetComponent<PlayerMov>().Parar();
         player.GetComponent<PlayerMov>().enabled = false;
+        player.GetComponent<PlayerInput>().enabled = false;
 
         switch (actividad)
         {
@@ -83,15 +84,16 @@ public class GameManager : MonoBehaviour
         si_no.SetActive(false);
         
         player.GetComponent<PlayerMov>().enabled = true;
+        player.GetComponent<PlayerInput>().enabled = true;
     }
     #region ESTUDIAR
     public void EmperzarEstudio() 
     {
-        Debug.Log("Comenzar a estudiar");
-        //prepar el minijuego
-        Invoke("prenderUIEstudio", 1.35f);
+        
+        Invoke("prenderUIEstudio", 2);
         player.GetComponent<PlayerMov>().anim.SetBool("Estudiando", true);
         cajaTexto.SetActive(false);
+        si_no.SetActive(false);
     }
     public void TerminarEstudio() 
     {
