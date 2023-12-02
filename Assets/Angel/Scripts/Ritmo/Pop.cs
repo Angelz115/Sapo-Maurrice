@@ -14,6 +14,12 @@ public class Pop : MonoBehaviour
     public int objetivoN;
     [SerializeField] bool puedoPresionar;
     [SerializeField] KeyCode estaTecla;
+    AudioManager audioManager;
+    private void Awake()
+    {
+        audioManager.PlaySFX(audioManager.minijuego);
+        audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
