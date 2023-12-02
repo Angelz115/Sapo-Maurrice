@@ -1,0 +1,1 @@
+﻿{"inkVersion":21,"root":[["ev",{"VAR?":"x"},{"f()":"one"},"+",{"VAR=":"x","re":true},"/ev","\n",["done",{"#f":5,"#n":"g-0"}],null],"done",{"one":["ev",1,"/ev","~ret",{"#f":1}],"global decl":["ev",5,{"VAR=":"x"},"/ev","end",null],"#f":1}],"listDefs":{}}

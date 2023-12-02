@@ -6,6 +6,7 @@ public class Test : MonoBehaviour
 {
     [SerializeField] string texto;
     [SerializeField] Actividad queSoy;
+    
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

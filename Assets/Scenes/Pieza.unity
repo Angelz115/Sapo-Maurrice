@@ -4674,7 +4674,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2130277470}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: SiEstudio
+        m_MethodName: SiRelajarse
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5453,7 +5453,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912648378}
-  m_LocalRotation: {x: -0.02161012, y: -0.012126097, z: -0.00026212688, w: 0.9996929}
+  m_LocalRotation: {x: -0.021610118, y: -0.0121260965, z: -0.0002621269, w: 0.9996929}
   m_LocalPosition: {x: -1.2977676, y: -3.1674485, z: -82.853516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
