@@ -21,6 +21,7 @@ public class PlayerStats : MonoBehaviour
             setearStats();
         }
     }
+    
     #region SUBIR_ESTADISTICAS
     public void subirEstres(int aumento) 
     {

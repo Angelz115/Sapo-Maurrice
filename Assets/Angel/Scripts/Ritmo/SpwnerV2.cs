@@ -97,10 +97,13 @@ public class SpwnerV2 : MonoBehaviour
     }
     private void TerminarRitmo() 
     {
-        GameManager.Instance.TerminarEstudio();
-        
-        termino = true;
-        Destroy(gameObject);
+        if (!termino)
+        {
+            GameManager.Instance.TerminarEstudio();
+
+            termino = true;
+            Destroy(gameObject);
+        }
     }
     public void setList(List<Transform> creacion, List<Transform> objetivo) 
     {
@@ -112,13 +115,4 @@ public class SpwnerV2 : MonoBehaviour
         }
     }
 }
-/*
- * public void sacarStats() 
-    {
-        List<int> stats = new List<int>();
-        stats[0] = estres;
-        stats[1] = sociabilidad;
-        stats[2] = cansancio;
-        stats[3] = conocimiento;
-    }
-*/
+

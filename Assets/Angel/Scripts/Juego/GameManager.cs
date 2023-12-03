@@ -10,12 +10,14 @@ public enum Horario {mañana,dia, tarde, noche}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    public GameObject player;
+    [SerializeField] GameObject player;
+    [SerializeField] PlayerStats stats;
     [Space]
 
     [Header("Manejo Orario")]
     [SerializeField] Horario horarioActual;
     [SerializeField] int dias;
+    [SerializeField] int horarioInt;
     [Space]
 
     [Header("Cajas de texto")]
@@ -27,9 +29,13 @@ public class GameManager : MonoBehaviour
     public GameObject cajaSalir;
     public GameObject si_no;
     public TextMesh tryM;
+    [Space]
+
+    [Header("Dormir")]
+    [SerializeField] GameObject Fade;
+    [SerializeField] float entretiempo;
     private void Awake()
     {
-        player = GameObject.FindWithTag("Player");
         
         if (Instance == null)
         {
@@ -41,7 +47,10 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
         asignarHorario();
+        
+        
     }
+    
     public void gameOver() 
     {
         Debug.Log("Perdiste");
@@ -111,7 +120,7 @@ public class GameManager : MonoBehaviour
         GameObject ui = GameObject.FindGameObjectWithTag("Ritmo");
         ui.GetComponent<Prender>().ApagarUI();
         player.GetComponent<PlayerMov>().anim.SetBool("Estudiando", false);
-        Invoke("reanudarMovimiento", 1);
+        
         player.GetComponent<PlayerStats>().subirConocimiento(1);
 
         if (horarioActual == Horario.noche)
@@ -166,62 +175,45 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Comenzo a dormir");
         player.GetComponent<PlayerStats>().bajarCansancio(2);
-
+        //player.GetComponent<PlayerStats>().bajarEstres(1);
+        Fade.GetComponent<Animator>().SetTrigger("Start");
+        cajaTexto.SetActive(false);
+        si_no.SetActive(false);
+        Invoke("TerminarDormir", entretiempo);
+        //Instantiate(reloj, transform.position, Quaternion.identity);
     }
     public void TerminarDormir() 
     {
-        Debug.Log("termino de dormir");
+        Fade.GetComponent<Animator>().SetTrigger("End");
         TerminarActividad();
-        player.GetComponent<PlayerStats>().bajarCansancio(3);
-        player.GetComponent<PlayerStats>().bajarEstres(2);
     }
 
     #endregion
 
-    #region TOMAR_ESTADISTICAS
+    #region TOMAR ESTADISTICAS
     public int SacarEstres() 
     {
-        int estres = player.GetComponent<PlayerStats>().valorEstres();
+        int estres = stats.valorEstres();
         return estres;
     }
     public int sacarSociabilidad() 
     {
-        int sociabilidad = player.GetComponent<PlayerStats>().valorScoiabilidad();
+        int sociabilidad = stats.valorScoiabilidad();
         return sociabilidad;
     }
 
     public int sacarCansancio() 
     {
-        int cansancio = player.GetComponent<PlayerStats>().valorCansancio();
+        int cansancio = stats.valorCansancio();
         return cansancio;
     }
     public int sacarConocimiento() 
     {
-        int conocimiento = player.GetComponent<PlayerStats>().valorConocimiento();
+        int conocimiento = stats.valorConocimiento();
         return conocimiento;
     }
     #endregion
 
-    private void asignarHorario() 
-    {
-        dias = PlayerPrefs.GetInt("DiasPrefs");
-        int horarioActualI = PlayerPrefs.GetInt("HorarioPref");
-        switch (horarioActualI)
-        {
-            case 3:
-                horarioActual = Horario.noche;
-                break;
-            case 2:
-                horarioActual = Horario.tarde;
-                break;
-            case 1:
-                horarioActual = Horario.dia;
-                break;
-            case 0:
-                horarioActual = Horario.mañana;
-                break;
-        }
-    }
     public void EmpezarActividad(Actividad quehacer)
     {
         switch (quehacer)
@@ -243,25 +235,78 @@ public class GameManager : MonoBehaviour
     
     public void TerminarActividad()
     {
+        Invoke("reanudarMovimiento", 1);
         switch (horarioActual)
         {
             case Horario.mañana:
                 horarioActual = Horario.dia;
+                horarioInt = 0;
                 break;
             case Horario.dia:
                 horarioActual = Horario.tarde;
+                horarioInt = 1;
                 break;
             case Horario.tarde:
                 horarioActual = Horario.noche;
+                horarioInt = 2;
                 break;
             case Horario.noche:
                 horarioActual = Horario.mañana;
+                horarioInt = 3;
                 dias++;
                 player.GetComponent<PlayerStats>().subirEstres(1);
                 break;
             
         }
     }
-    
+    #region PLAYER PREFS
+    public void asignarHorario() 
+    {
+        dias = PlayerPrefs.GetInt("DiasPrefs");
+        horarioInt = PlayerPrefs.GetInt("HorarioPref");
+        switch (horarioInt)
+        {
+            case 3:
+                horarioActual = Horario.noche;
+                break;
+            case 2:
+                horarioActual = Horario.tarde;
+                break;
+            case 1:
+                horarioActual = Horario.dia;
+                break;
+            case 0:
+                horarioActual = Horario.mañana;
+                break;
+        }
+    }
+    public void asignarPrefs() 
+    {
+
+        PlayerPrefs.SetInt("EstresPref",stats.valorEstres());
+        PlayerPrefs.SetInt("SociabilidadPref", stats.valorScoiabilidad());
+        PlayerPrefs.SetInt("CansancioPref", stats.valorCansancio());
+        PlayerPrefs.SetInt("ConocimientoPref", stats.valorConocimiento());
+        PlayerPrefs.SetInt("DiasPrefs",dias);
+        PlayerPrefs.SetInt("HorarioPref",horarioInt);
+        
+    }
+    #endregion
+
+    public void setVars(GameObject CT, GameObject CE, GameObject CS, GameObject SD, GameObject CD,  GameObject CR, GameObject Fa) 
+    {
+
+        player = GameObject.FindWithTag("Player");
+
+        cajaTexto = CT;
+        cajaEstudio = CE;
+        cajaSocializar = CS;
+        cajaDormir = CD;
+        cajaRelajo = CR;
+        cajaSalir = CR;
+        Fade = Fa;
+        player = GameObject.FindWithTag("Player");
+
+    }
 }
 

@@ -13,5 +13,8 @@ EditorBuildSettings:
     guid: ddb35a7f56cd0274380b2911080a998f
   - enabled: 1
     path: Assets/Scenes/Universidad.unity
-    guid: 30ccce8f5f5b81646a7803a383472414
+    guid: fb32498a34cf609468a56fdc04119eca
+  - enabled: 1
+    path: Assets/Scenes/Parque.unity
+    guid: a391e0614658d9a4d96d92536bb54eb9
   m_configObjects: {}

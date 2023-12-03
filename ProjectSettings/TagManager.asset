@@ -8,6 +8,9 @@ TagManager:
   - Tap
   - Pop
   - audio
+  - TextBox
+  - Pregunta
+  - Fade
   layers:
   - Default
   - TransparentFX
