@@ -163,7 +163,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: -1491369903, guid: 6a0b25ecb2af74b479f5d9cdec292260, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -273,7 +273,6 @@ MonoBehaviour:
   sociabilidad: 2
   cansancio: 4
   conocimiento: 1
-  animator: {fileID: 884391577973524188}
 --- !u!114 &2069307735
 MonoBehaviour:
   m_ObjectHideFlags: 0

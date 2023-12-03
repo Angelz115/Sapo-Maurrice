@@ -18,4 +18,8 @@ public class ChangeScene : MonoBehaviour
     {
         SceneManager.LoadScene(2);
     }
+    public void aParque() 
+    {
+        SceneManager.LoadScene(3);
+    }
 }

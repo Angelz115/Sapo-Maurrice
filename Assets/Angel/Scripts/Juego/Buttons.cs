@@ -55,5 +55,6 @@ public class Buttons : MonoBehaviour
     {
         audioManager.PlaySFX(audioManager.opcionSi);
     }
+    
     #endregion
 }
