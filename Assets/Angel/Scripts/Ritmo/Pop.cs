@@ -17,8 +17,8 @@ public class Pop : MonoBehaviour
     AudioManager audioManager;
     private void Awake()
     {
-        audioManager.PlaySFX(audioManager.minijuego);
         audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
+        audioManager.PlaySFX(audioManager.minijuego);
     }
     // Start is called before the first frame update
     void Start()

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public enum Actividad {estudiar, socializar, dormir, relajarse, salir}
-public enum Horario {mañana, tarde, noche}
+public enum Horario {mañana,dia, tarde, noche}
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -39,7 +40,17 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+        asignarHorario();
+    }
+    public void gameOver() 
+    {
+        Debug.Log("Perdiste");
+    }
+    public void perderDia() 
+    {
+        SceneManager.LoadScene(1);
+        horarioActual = Horario.mañana;
+        dias++;
     }
     public void PreguntarSi(string text, Actividad actividad) 
     {
@@ -77,7 +88,6 @@ public class GameManager : MonoBehaviour
         si_no.SetActive(true);
     }
     
-
     public void reanudarMovimiento()
     {
         cajaTexto.SetActive(false);
@@ -103,6 +113,17 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerMov>().anim.SetBool("Estudiando", false);
         Invoke("reanudarMovimiento", 1);
         player.GetComponent<PlayerStats>().subirConocimiento(1);
+
+        if (horarioActual == Horario.noche)
+        {
+            player.GetComponent<PlayerStats>().subirEstres(2);
+            player.GetComponent<PlayerStats>().subirCansancio(2);
+        }
+        else
+        {
+            player.GetComponent<PlayerStats>().subirEstres(1);
+            player.GetComponent<PlayerStats>().subirCansancio(1);
+        }
         TerminarActividad();
 
     }
@@ -144,6 +165,8 @@ public class GameManager : MonoBehaviour
     public void EmpezarDormir() 
     {
         Debug.Log("Comenzo a dormir");
+        player.GetComponent<PlayerStats>().bajarCansancio(2);
+
     }
     public void TerminarDormir() 
     {
@@ -179,7 +202,26 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    
+    private void asignarHorario() 
+    {
+        dias = PlayerPrefs.GetInt("DiasPrefs");
+        int horarioActualI = PlayerPrefs.GetInt("HorarioPref");
+        switch (horarioActualI)
+        {
+            case 3:
+                horarioActual = Horario.noche;
+                break;
+            case 2:
+                horarioActual = Horario.tarde;
+                break;
+            case 1:
+                horarioActual = Horario.dia;
+                break;
+            case 0:
+                horarioActual = Horario.mañana;
+                break;
+        }
+    }
     public void EmpezarActividad(Actividad quehacer)
     {
         switch (quehacer)
@@ -204,6 +246,9 @@ public class GameManager : MonoBehaviour
         switch (horarioActual)
         {
             case Horario.mañana:
+                horarioActual = Horario.dia;
+                break;
+            case Horario.dia:
                 horarioActual = Horario.tarde;
                 break;
             case Horario.tarde:
