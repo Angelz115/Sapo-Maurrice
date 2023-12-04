@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 8517875368114770728}
   - component: {fileID: 8517875368114770735}
   - component: {fileID: -5069688219980493577}
-  - component: {fileID: 7966927114114833262}
   - component: {fileID: 5339860305166372771}
+  - component: {fileID: 7966927114114833262}
   m_Layer: 5
   m_Name: Pop
   m_TagString: Untagged
@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -100,25 +100,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &7966927114114833262
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8517875368114770733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e669d854702b7054a82a652d2c4f032b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nuevoColor: {r: 0, g: 0, b: 0, a: 0}
-  objectivo: {fileID: 0}
-  rb: {fileID: -5069688219980493577}
-  fuerza: 0
-  objetivoN: 0
-  puedoPresionar: 0
-  estaTecla: 0
 --- !u!61 &5339860305166372771
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,3 +126,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 65, y: 65}
   m_EdgeRadius: 0
+--- !u!114 &7966927114114833262
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8517875368114770733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e669d854702b7054a82a652d2c4f032b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nuevoColor: {r: 1, g: 1, b: 1, a: 1}
+  objectivo: {fileID: 0}
+  rb: {fileID: -5069688219980493577}
+  fuerza: 0
+  objetivoN: 0
+  puedoPresionar: 0
+  estaTecla: 0
+  sprites:
+  - {fileID: 21300000, guid: f8b5bc7cfbcfbbd41ad442c5a4a653b2, type: 3}
+  - {fileID: 21300000, guid: b9a9eddd4f2263f438388ef63bc5871a, type: 3}
+  - {fileID: 21300000, guid: 95b0c34c86ef40a4882a1ff45dfc939c, type: 3}
+  - {fileID: 21300000, guid: 2c21420ec53313c468d5658d00ea4baf, type: 3}

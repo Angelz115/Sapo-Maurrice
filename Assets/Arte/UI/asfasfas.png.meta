@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 4ce4b56c9cb52ad45bedb93d4414a667
+guid: 984ad76f0d159e5419091d53e1d1983c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -117,34 +117,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ryan_laugh_0
+      name: asfasfas_0
       rect:
         serializedVersion: 2
-        x: 22
-        y: 120
-        width: 98
-        height: 115
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 57c9d210e470f2848b56f8f6b78b29f1
-      internalID: 756747124
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: ryan_laugh_1
-      rect:
-        serializedVersion: 2
-        x: 21
+        x: 0
         y: 0
-        width: 99
-        height: 111
+        width: 2250
+        height: 1098
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,8 +131,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fbfa9886f35fd049a86a2175603f9e3
-      internalID: 1640647267
+      spriteID: ce242b6c1e50e9f419702c6376c99bfe
+      internalID: 844476975
       vertices: []
       indices: 
       edges: []
@@ -169,8 +148,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ryan_laugh_0: 756747124
-      ryan_laugh_1: 1640647267
+      asfasfas_0: 844476975
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

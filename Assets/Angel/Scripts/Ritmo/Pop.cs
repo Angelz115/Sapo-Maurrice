@@ -14,16 +14,58 @@ public class Pop : MonoBehaviour
     public int objetivoN;
     [SerializeField] bool puedoPresionar;
     [SerializeField] KeyCode estaTecla;
+    [SerializeField] Sprite[] sprites;
     AudioManager audioManager;
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("audio").GetComponent<AudioManager>();
         audioManager.PlaySFX(audioManager.minijuego);
+        /*
+        switch (objetivoN)
+        {
+            case 3:
+                gameObject.GetComponent<Image>().sprite = sprites[3];
+                Debug.Log("ABC");
+                break;
+            case 2:
+                gameObject.GetComponent<Image>().sprite = sprites[2];
+                Debug.Log("nocap");
+                break;
+            case 1:
+                gameObject.GetComponent<Image>().sprite = sprites[1];
+                Debug.Log("proga");
+                break;
+            case 0:
+                gameObject.GetComponent<Image>().sprite = sprites[0];
+                Debug.Log("123");
+                break;
+        }
+        */
+        //gameObject.GetComponent<Image>().sprite  
     }
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<Image>().color = nuevoColor;
+        switch (objetivoN)
+        {
+            case 3:
+                gameObject.GetComponent<Image>().sprite = sprites[3];
+                Debug.Log("ABC");
+                break;
+            case 2:
+                gameObject.GetComponent<Image>().sprite = sprites[2];
+                Debug.Log("nocap");
+                break;
+            case 1:
+                gameObject.GetComponent<Image>().sprite = sprites[1];
+                Debug.Log("proga");
+                break;
+            case 0:
+                gameObject.GetComponent<Image>().sprite = sprites[0];
+                Debug.Log("123");
+                break;
+        }
+        //GetComponent<Image>().color = nuevoColor;
         Vector2 direccion = new Vector2(objectivo.position.x- transform.position.x, objectivo.position.y - transform.position.y);
         rb.AddForce(direccion.normalized * fuerza);
     }

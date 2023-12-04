@@ -9,10 +9,14 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] KeyCode accion;
     [SerializeField] string pregunta;
     [SerializeField] Actividad queHacer;
+    public GameObject ui,textbox;
+    public GameObject[] amigos;
+
     // Start is called before the first frame update
     void Start()
     {
         pogger.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -25,8 +29,37 @@ public class PlayerInput : MonoBehaviour
                 GameManager.Instance.PreguntarSi(pregunta,queHacer);
             }
         }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            dejarConversa();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            conversar();
+        }
     }
-
+    public void conversar() 
+    {
+        ui.SetActive(true);
+        textbox.SetActive(true);
+        for (int i = 0; i < amigos.Length; i++)
+        {
+            amigos[i].SetActive(false);
+        }
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+        gameObject.GetComponent<PlayerMov>().enabled = false;
+    }
+    private void dejarConversa() 
+    {
+        ui.SetActive(false);
+        textbox.SetActive(false);
+        for (int i = 0; i < amigos.Length; i++)
+        {
+            amigos[i].SetActive(true);
+        }
+        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+        gameObject.GetComponent<PlayerMov>().enabled = true;
+    }
     public void LLamarAccion(string texto, Actividad actividad) 
     {
         pogger.SetActive(true);

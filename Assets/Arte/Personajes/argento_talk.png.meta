@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -42,7 +42,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -115,7 +115,217 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: argento_talk_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 360
+        width: 61
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b97eb341b1777a4ba242b35d27712a9
+      internalID: 1251867999
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_1
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 360
+        width: 61
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 80a41544cc7f5384fb57234e4371b56d
+      internalID: 361995611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_3
+      rect:
+        serializedVersion: 2
+        x: 259
+        y: 360
+        width: 71
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fb3639f781756e44a5e1bf08ef9796e
+      internalID: 575530444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 240
+        width: 61
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 044e0989abbb9f847a94bd72f06d8b69
+      internalID: 1034872990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_6
+      rect:
+        serializedVersion: 2
+        x: 269
+        y: 240
+        width: 61
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9d8f3ca8698df5047a99e7fa376045dc
+      internalID: -379895581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_7
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 240
+        width: 61
+        height: 114
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b35d41008bee8cf4a9ac92f0fbae18be
+      internalID: 475307826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_11
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 120
+        width: 67
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d8f54a2ee972ec45a2847e50303d00b
+      internalID: -1342676895
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_12
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 120
+        width: 61
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a51b860834a03b4597a40097cda1677
+      internalID: -445412462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_13
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 120
+        width: 70
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a4e5ac796b1ab5c4399f69029e20e312
+      internalID: 1775126370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: argento_talk_15
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 0
+        width: 66
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42992901462ef2b4c9b5c17ab26fa411
+      internalID: -1859590569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -126,7 +336,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      argento_talk_0: 1251867999
+      argento_talk_1: 361995611
+      argento_talk_10: -511900845
+      argento_talk_11: -1342676895
+      argento_talk_12: -445412462
+      argento_talk_13: 1775126370
+      argento_talk_14: 1082100403
+      argento_talk_15: -1859590569
+      argento_talk_2: 551324568
+      argento_talk_3: 575530444
+      argento_talk_4: 1029096349
+      argento_talk_5: 1034872990
+      argento_talk_6: -379895581
+      argento_talk_7: 475307826
+      argento_talk_8: -1655869381
+      argento_talk_9: -795214049
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

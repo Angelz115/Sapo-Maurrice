@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
     #region SOCIALIZAR
     public void EmpezrSocializar() 
     {
-        Debug.Log("Comenzo a socializar");
+        SceneManager.LoadScene(3);
     }
 
     public void TerminarSocializar() 
@@ -297,7 +297,7 @@ public class GameManager : MonoBehaviour
     {
 
         player = GameObject.FindWithTag("Player");
-
+        stats = player.GetComponent<PlayerStats>();
         cajaTexto = CT;
         cajaEstudio = CE;
         cajaSocializar = CS;
@@ -305,7 +305,7 @@ public class GameManager : MonoBehaviour
         cajaRelajo = CR;
         cajaSalir = CR;
         Fade = Fa;
-        player = GameObject.FindWithTag("Player");
+        
 
     }
 }
