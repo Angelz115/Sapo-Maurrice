@@ -4,11 +4,44 @@ using UnityEngine;
 
 public class Amigos : MonoBehaviour
 {
-    private void OnCollisionEnter2D(Collision2D collision)
+    public GameObject amigos;
+    public int id;
+    private void Start()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (PlayerPrefs.GetInt("SocializandoPref") == 1)
         {
-            Debug.Log("Hablar con amigos");
+            amigos.SetActive(true);
+            PlayerPrefs.SetInt("SocializandoPref",0);
+            return;
+
         }
+        Horario horario1 = GameManager.Instance.sacarHorario();
+        if (id == 0)            //esta es si estan en la u
+        {
+            
+            if (horario1 == Horario.mañana)
+            {
+                amigos.SetActive(true);
+            }
+            else
+            {
+                amigos.SetActive(false);
+            }
+        }
+        if (id == 1)
+        {
+            
+            if ( horario1 == Horario.mañana)
+            {
+                amigos.SetActive(false);
+            }
+            int random = Random.Range(0,3);
+            Debug.Log(random);
+            if (random > 1)
+            {
+                amigos.SetActive(true);
+            }
+        }
+
     }
 }

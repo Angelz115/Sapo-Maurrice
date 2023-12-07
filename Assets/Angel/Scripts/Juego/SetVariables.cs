@@ -11,11 +11,12 @@ public class SetVariables : MonoBehaviour
     public GameObject cajaRelajo;
     public GameObject cajaSalir;
     public GameObject Fade;
+    public GameObject mensaje;
     public int id;
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Instance.setVars(cajaTexto,cajaEstudio,cajaSocializar,cajaDormir,cajaRelajo,cajaSalir,Fade);
+        GameManager.Instance.setVars(cajaTexto,cajaEstudio,cajaSocializar,cajaDormir,cajaRelajo,cajaSalir,Fade,mensaje);
         
     }
 

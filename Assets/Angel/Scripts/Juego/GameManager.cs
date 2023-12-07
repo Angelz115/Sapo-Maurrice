@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Manejo Orario")]
     [SerializeField] Horario horarioActual;
-    [SerializeField] int dias;
+    public int dias { get; private set; }
     [SerializeField] int horarioInt;
+    [SerializeField] GameObject mensaje;
     [Space]
 
     [Header("Cajas de texto")]
@@ -28,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject cajaRelajo;
     public GameObject cajaSalir;
     public GameObject si_no;
-    public TextMesh tryM;
+    public TextMesh advertencia;
     [Space]
 
     [Header("Dormir")]
@@ -50,17 +51,30 @@ public class GameManager : MonoBehaviour
         
         
     }
-    
+    private void OnApplicationQuit()
+    {
+        PlayerPrefs.SetInt("DiasPref", 0);
+        PlayerPrefs.SetInt("HorarioIntPref", 0);
+        stats.resetPrefs();
+    }
+
+    public Horario sacarHorario() 
+    {
+        return horarioActual;
+    }
+
     public void gameOver() 
     {
         Debug.Log("Perdiste");
     }
+
     public void perderDia() 
     {
         SceneManager.LoadScene(1);
         horarioActual = Horario.mañana;
         dias++;
     }
+
     public void PreguntarSi(string text, Actividad actividad) 
     {
         cajaTexto.SetActive(true);
@@ -105,6 +119,7 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerMov>().enabled = true;
         player.GetComponent<PlayerInput>().enabled = true;
     }
+
     #region ESTUDIAR
     public void EmperzarEstudio() 
     {
@@ -146,12 +161,19 @@ public class GameManager : MonoBehaviour
     #region SOCIALIZAR
     public void EmpezrSocializar() 
     {
-        SceneManager.LoadScene(3);
-    }
+        Debug.Log("socializando");
 
+    }
+    public void moverAParque() 
+    {
+        SceneManager.LoadScene(3);
+        PlayerPrefs.SetInt("SocializandoPref", 1);
+    }
     public void TerminarSocializar() 
     {
-        Debug.Log("Comenzo a socializar");
+        Debug.Log("termino de socializar");
+        PlayerPrefs.SetInt("SocializandoPref",0);
+        TerminarActividad();
     }
 
     #endregion
@@ -214,52 +236,68 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public void EmpezarActividad(Actividad quehacer)
+    public void quedateEnCasa() 
     {
-        switch (quehacer)
-        {
-            case Actividad.estudiar:
-                EmperzarEstudio();
-                break;
-            case Actividad.socializar:
-                EmpezrSocializar();
-                break;
-            case Actividad.dormir:
-                EmpezarDormir();
-                break;
-            case Actividad.relajarse:
-                EmpezarRelajarse();
-                break;
-        }
+        cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = "quedate en la casa";
+        Invoke("apagarCaja", 4);
+        Invoke("reanudarMovimiento", 1);
+        si_no.SetActive(false);  
     }
-    
+    private void apagarCaja()
+    {
+        cajaTexto.SetActive(false);
+    }
     public void TerminarActividad()
     {
         Invoke("reanudarMovimiento", 1);
+        pasarTiempo();
+    }
+    public void pasarTiempo() 
+    {
+        mensaje.SetActive(false);
         switch (horarioActual)
         {
             case Horario.mañana:
                 horarioActual = Horario.dia;
-                horarioInt = 0;
+                horarioInt = 1;
                 break;
             case Horario.dia:
                 horarioActual = Horario.tarde;
-                horarioInt = 1;
+                horarioInt = 2;
                 break;
             case Horario.tarde:
                 horarioActual = Horario.noche;
-                horarioInt = 2;
+                horarioInt = 3;
                 break;
             case Horario.noche:
                 horarioActual = Horario.mañana;
-                horarioInt = 3;
-                dias++;
-                player.GetComponent<PlayerStats>().subirEstres(1);
+                horarioInt = 0;
+                cambioDia();
+                diaFinal();
                 break;
+
+        }
+        void cambioDia() 
+        {
+            dias++;
+            player.GetComponent<PlayerStats>().subirEstres(1);
+            Fade.GetComponent<Animator>().SetTrigger("Start");
+            Fade.GetComponent<Animator>().SetTrigger("End");
+            mensaje.SetActive(true);
+               
+        }
+        void diaFinal() 
+        {
+            if (dias != 2)  //pa que sea el viernes tiene que ser 4
+                return;
+            Debug.Log("dia de la prueba");
             
         }
     }
+
     #region PLAYER PREFS
+
+    
     public void asignarHorario() 
     {
         dias = PlayerPrefs.GetInt("DiasPrefs");
@@ -280,20 +318,22 @@ public class GameManager : MonoBehaviour
                 break;
         }
     }
-    public void asignarPrefs() 
+    
+    public void setPrefs()
     {
+        PlayerPrefs.SetInt("DiasPref", dias);
+        PlayerPrefs.SetInt("HorarioIntPref", horarioInt);
+        stats.setStatsPrefs();
 
-        PlayerPrefs.SetInt("EstresPref",stats.valorEstres());
-        PlayerPrefs.SetInt("SociabilidadPref", stats.valorScoiabilidad());
-        PlayerPrefs.SetInt("CansancioPref", stats.valorCansancio());
-        PlayerPrefs.SetInt("ConocimientoPref", stats.valorConocimiento());
-        PlayerPrefs.SetInt("DiasPrefs",dias);
-        PlayerPrefs.SetInt("HorarioPref",horarioInt);
-        
     }
+    public void playerStat1()
+    {
+        stats.setearStats();
+    }
+    
     #endregion
 
-    public void setVars(GameObject CT, GameObject CE, GameObject CS, GameObject SD, GameObject CD,  GameObject CR, GameObject Fa) 
+    public void setVars(GameObject CT, GameObject CE, GameObject CS, GameObject SD, GameObject CD,  GameObject CR, GameObject Fa,GameObject Me) 
     {
 
         player = GameObject.FindWithTag("Player");
@@ -305,8 +345,27 @@ public class GameManager : MonoBehaviour
         cajaRelajo = CR;
         cajaSalir = CR;
         Fade = Fa;
-        
+        mensaje = Me;
+        dias = PlayerPrefs.GetInt("DiasPref");
+        horarioInt = PlayerPrefs.GetInt("HorarioIntPref");
 
+        switch (horarioInt)
+        {
+            case 3:
+                horarioActual = Horario.noche;
+                break;
+            case 2:
+                horarioActual = Horario.tarde;
+                break;
+            case 1:
+                horarioActual = Horario.dia;
+                break;
+            case 0:
+                horarioActual = Horario.mañana;
+                break;
+        }
     }
+
+    
 }
 

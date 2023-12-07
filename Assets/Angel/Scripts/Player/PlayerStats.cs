@@ -10,16 +10,11 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] int cansancio;
     [SerializeField] int conocimiento;
 
-    [SerializeField] bool testStats;
-
 
     private void Start()
     {
-        if (!testStats)
-        {
-            
-            setearStats();
-        }
+        GameManager.Instance.setPrefs();
+
     }
     
     #region SUBIR_ESTADISTICAS
@@ -57,28 +52,29 @@ public class PlayerStats : MonoBehaviour
     public void bajarEstres(int bajada)
     {
         estres -= bajada;
-        menorA0(estres);   
+        estres = menorA0(estres);
+        
     }
     public void bajarSociabilidad(int bajada)
     {
         sociabilidad -= bajada;
-        menorA0(sociabilidad);
+        sociabilidad =  menorA0(sociabilidad);
     }
     public void bajarCansancio(int bajada)
     {
         cansancio -= bajada;
-        menorA0(cansancio);
+        cansancio = menorA0(cansancio);
     }
     public void bajarConocimiento(int bajada)
     {
         conocimiento -= bajada;
-        menorA0(conocimiento);
+        conocimiento = menorA0(conocimiento);
     }
-    public void menorA0(int stat) 
+    private int menorA0(int stat) 
     {
         if (stat < 0)
             stat = 0;
-        
+        return stat;
     }
     #endregion
 
@@ -103,7 +99,7 @@ public class PlayerStats : MonoBehaviour
 
     #region FUNCIONES EXTRA
 
-    private void setearStats() 
+    public void setearStats() 
     {
         estres = PlayerPrefs.GetInt("EstresPref");
         sociabilidad = PlayerPrefs.GetInt("SociabilidadPref");
@@ -111,6 +107,19 @@ public class PlayerStats : MonoBehaviour
         conocimiento = PlayerPrefs.GetInt("ConocimientoPref");
         
     }
-
+    public void setStatsPrefs() 
+    {
+        PlayerPrefs.SetInt("EstresPref",estres);
+        PlayerPrefs.SetInt("SociabilidadPref",sociabilidad);
+        PlayerPrefs.SetInt("CansancioPref",cansancio);
+        PlayerPrefs.SetInt("ConocimientoPref",conocimiento);
+    }
+    public void resetPrefs() 
+    {
+        PlayerPrefs.SetInt("EstresPref", 0);
+        PlayerPrefs.SetInt("SociabilidadPref", 0);
+        PlayerPrefs.SetInt("CansancioPref", 0);
+        PlayerPrefs.SetInt("ConocimientoPref", 0);
+    }
     #endregion
 }

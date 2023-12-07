@@ -41,6 +41,11 @@ public class Buttons : MonoBehaviour
         audioManager.PlaySFX(audioManager.opcionSi);
         GameManager.Instance.EmpezrSocializar();
     }
+    public void AParque() 
+    {
+        audioManager.PlaySFX(audioManager.opcionSi);
+        GameManager.Instance.moverAParque();
+    }
     public void SiDormir() 
     {
         audioManager.PlaySFX(audioManager.opcionSi);

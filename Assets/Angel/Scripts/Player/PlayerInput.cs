@@ -9,6 +9,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] KeyCode accion;
     [SerializeField] string pregunta;
     [SerializeField] Actividad queHacer;
+
     public GameObject ui,textbox;
     public GameObject[] amigos;
 
@@ -31,12 +32,13 @@ public class PlayerInput : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
+            GameManager.Instance.pasarTiempo();
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
             dejarConversa();
         }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            conversar();
-        }
+        
     }
     public void conversar() 
     {
