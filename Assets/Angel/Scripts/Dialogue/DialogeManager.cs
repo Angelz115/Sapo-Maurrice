@@ -14,6 +14,9 @@ public class DialogeManager : MonoBehaviour
     [SerializeField] Story currenStory;
     [SerializeField] bool dialogueIsPlaying;
     [SerializeField] bool playingDialogue;
+    [SerializeField] KeyCode key;
+    [SerializeField] GameObject[] choices;
+    [SerializeField] TextMeshProUGUI[] choicesText;
 
 
     private void Awake()
@@ -34,6 +37,14 @@ public class DialogeManager : MonoBehaviour
     {
         dialogueIsPlaying = false;
         dialoguePanel.SetActive(false);
+
+        choicesText = new TextMeshProUGUI[choices.Length];
+        int index = 0;
+        foreach (GameObject choice in choices)
+        {
+            choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            index++;
+        }
     }
     private void Update()
     {
@@ -42,7 +53,7 @@ public class DialogeManager : MonoBehaviour
             return;
         }
 
-        if (playingDialogue)
+        if (playingDialogue && Input.GetKeyDown(key))
         {
             ContinueStory();
         }
@@ -52,10 +63,13 @@ public class DialogeManager : MonoBehaviour
         currenStory = new Story(inkJSON.text);
         dialogueIsPlaying = true;
         dialoguePanel.SetActive(true);
+
+       
         playingDialogue = true;
         ContinueStory();
     }
-
+    
+    
     private IEnumerator ExitDialogueMode() 
     {
         yield return new WaitForSeconds(0.3f);
@@ -65,7 +79,7 @@ public class DialogeManager : MonoBehaviour
         playingDialogue = false;
         GameManager.Instance.TerminarSocializar();
     }
-
+    
     private void ContinueStory() 
     {
         if (currenStory.canContinue)
@@ -77,6 +91,17 @@ public class DialogeManager : MonoBehaviour
             StartCoroutine(ExitDialogueMode());
         }
     }
-
-    
+    private void DisplayChoices() 
+    {
+        List<Choice> currentChoices = currenStory.currentChoices;
+        if (currentChoices.Count > choices.Length)
+        {
+            Debug.LogError("More choices were given tha the UI can support. Number of choices given" + currentChoices.Count);
+        }
+    }
+    public void setVars(GameObject DialoguePanel, TextMeshProUGUI DialogueText) 
+    {
+        dialoguePanel = DialoguePanel;
+        dialogueText = DialogueText;
+    }
 }

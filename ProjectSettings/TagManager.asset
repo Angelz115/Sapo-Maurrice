@@ -11,6 +11,7 @@ TagManager:
   - TextBox
   - Pregunta
   - Fade
+  - Amigo
   layers:
   - Default
   - TransparentFX

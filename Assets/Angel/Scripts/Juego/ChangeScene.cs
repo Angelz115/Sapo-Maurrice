@@ -16,10 +16,11 @@ public class ChangeScene : MonoBehaviour
     }
     public void aPieza() 
     {
-
+        
         salir();
         if (puedeSalir)
         {
+            GameManager.Instance.pasarTiempo();
             manger();
             SceneManager.LoadScene(1);
         }
@@ -31,10 +32,15 @@ public class ChangeScene : MonoBehaviour
 
     public void aUniversidad()
     {
+        if (GameManager.Instance.veACasa())
+        {
+            return;
+        }
         salir();
 
         if (puedeSalir)
         {
+            GameManager.Instance.pasarTiempo();
             manger();
             SceneManager.LoadScene(2);
         }
@@ -45,11 +51,15 @@ public class ChangeScene : MonoBehaviour
     }
     public void aParque() 
     {
-
+        if (GameManager.Instance.veACasa())
+        {
+            return;
+        }
         salir();
         
         if (puedeSalir)
         {
+            GameManager.Instance.pasarTiempo();
             manger();
             SceneManager.LoadScene(3);
         }
@@ -63,7 +73,7 @@ public class ChangeScene : MonoBehaviour
         if (GameManager.Instance.sacarHorario() == Horario.noche)
         {
             puedeSalir = false;
-            //GameManager.Instance.quedateEnCasa();
+            
         }
         else
         {

@@ -34,10 +34,7 @@ public class PlayerInput : MonoBehaviour
         {
             GameManager.Instance.pasarTiempo();
         }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            dejarConversa();
-        }
+        
         
     }
     public void conversar() 

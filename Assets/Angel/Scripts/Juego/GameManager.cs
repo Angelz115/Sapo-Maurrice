@@ -9,32 +9,40 @@ public enum Actividad {estudiar, socializar, dormir, relajarse, salir}
 public enum Horario {mañana,dia, tarde, noche}
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    [Header("Variables internas")]
     [SerializeField] GameObject player;
+    public static GameManager Instance { get; private set; }
     [SerializeField] PlayerStats stats;
+    [SerializeField] int escena;
     [Space]
 
     [Header("Manejo Orario")]
-    [SerializeField] Horario horarioActual;
-    public int dias { get; private set; }
     [SerializeField] int horarioInt;
+    public Horario horarioActual { get; private set; }
+    public int dias { get; private set; }
     [SerializeField] GameObject mensaje;
     [Space]
 
     [Header("Cajas de texto")]
-    public GameObject cajaTexto;
-    public GameObject cajaEstudio;
-    public GameObject cajaSocializar;
-    public GameObject cajaDormir;
-    public GameObject cajaRelajo;
-    public GameObject cajaSalir;
-    public GameObject si_no;
-    public TextMesh advertencia;
+    [SerializeField] GameObject cajaTexto;
+    [SerializeField] GameObject cajaEstudio;
+    [SerializeField] GameObject cajaSocializar;
+    [SerializeField] GameObject cajaDormir;
+    [SerializeField] GameObject cajaRelajo;
+    [SerializeField] GameObject cajaSalir;
+    [SerializeField] GameObject si_no;
+    [SerializeField] TextMesh advertencia;
     [Space]
 
     [Header("Dormir")]
     [SerializeField] GameObject Fade;
     [SerializeField] float entretiempo;
+
+    [Header("Dialogos")]
+    public TextAsset dialogos;
+    [SerializeField] GameObject cajaDialogos;
+    [SerializeField] GameObject amigos_UI;
+    [SerializeField] Socializar socializar;
     private void Awake()
     {
         
@@ -70,9 +78,9 @@ public class GameManager : MonoBehaviour
 
     public void perderDia() 
     {
-        SceneManager.LoadScene(1);
         horarioActual = Horario.mañana;
         dias++;
+        SceneManager.LoadScene(1);
     }
 
     public void PreguntarSi(string text, Actividad actividad) 
@@ -161,7 +169,14 @@ public class GameManager : MonoBehaviour
     #region SOCIALIZAR
     public void EmpezrSocializar() 
     {
-        Debug.Log("socializando");
+
+        cajaTexto.SetActive(false);
+        si_no.SetActive(false);
+
+        amigos_UI.SetActive(true);
+
+        player.GetComponent<PlayerMov>().anim.SetBool("Socializar", true);
+        DialogeManager.Instance.EnterDialogueMode(dialogos);
 
     }
     public void moverAParque() 
@@ -171,6 +186,11 @@ public class GameManager : MonoBehaviour
     }
     public void TerminarSocializar() 
     {
+        amigos_UI.SetActive(false);
+
+        player.GetComponent<PlayerMov>().anim.SetBool("Socializar", false);
+
+        GameObject.FindGameObjectWithTag("Amigo").GetComponent<Socializar>().yaHablo = true;
         Debug.Log("termino de socializar");
         PlayerPrefs.SetInt("SocializandoPref",0);
         TerminarActividad();
@@ -236,21 +256,51 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region MENSAJE JUGADOR
+    public bool veACasa() 
+    {
+        bool tarde = false;
+        if (horarioActual != Horario.tarde)
+            return tarde;
+        
+        if (escena == 1)
+            prenderMensaje("quedate en la casa");
+        
+        else
+            prenderMensaje("Ve a casa es tarde");
+
+        tarde = true;
+        return tarde;
+    } 
+
     public void quedateEnCasa() 
     {
-        cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = "quedate en la casa";
+        prenderMensaje("quedate en la casa");
+    }
+
+    private void prenderMensaje(string mensaje) 
+    {
+        cajaTexto.GetComponentInChildren<TextMeshProUGUI>().text = mensaje;
         Invoke("apagarCaja", 4);
         Invoke("reanudarMovimiento", 1);
-        si_no.SetActive(false);  
+        si_no.SetActive(false);
     }
     private void apagarCaja()
     {
         cajaTexto.SetActive(false);
     }
+
+    #endregion
     public void TerminarActividad()
     {
         Invoke("reanudarMovimiento", 1);
         pasarTiempo();
+        /*
+        if (horarioActual == Horario.noche &&  escena != 1)
+        {
+            SceneManager.LoadScene(1);
+        }
+        */
     }
     public void pasarTiempo() 
     {
@@ -333,7 +383,8 @@ public class GameManager : MonoBehaviour
     
     #endregion
 
-    public void setVars(GameObject CT, GameObject CE, GameObject CS, GameObject SD, GameObject CD,  GameObject CR, GameObject Fa,GameObject Me) 
+    public void setVars(GameObject CT, GameObject CE, GameObject CS, GameObject SD, GameObject CD,  GameObject CR, 
+        GameObject Fa, GameObject Me, int Escena, GameObject Amigos_UI, GameObject DialogueText) 
     {
 
         player = GameObject.FindWithTag("Player");
@@ -346,6 +397,9 @@ public class GameManager : MonoBehaviour
         cajaSalir = CR;
         Fade = Fa;
         mensaje = Me;
+        escena = Escena;
+        amigos_UI = Amigos_UI;
+        cajaDialogos = DialogueText;
         dias = PlayerPrefs.GetInt("DiasPref");
         horarioInt = PlayerPrefs.GetInt("HorarioIntPref");
 

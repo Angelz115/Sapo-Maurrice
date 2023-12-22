@@ -6,8 +6,15 @@ public class Amigos : MonoBehaviour
 {
     public GameObject amigos;
     public int id;
+    public bool test;
+
     private void Start()
     {
+        if (test)
+        {
+            amigos.SetActive(true);
+            return;
+        }
         if (PlayerPrefs.GetInt("SocializandoPref") == 1)
         {
             amigos.SetActive(true);
@@ -15,11 +22,11 @@ public class Amigos : MonoBehaviour
             return;
 
         }
-        Horario horario1 = GameManager.Instance.sacarHorario();
+        Horario horario1 = GameManager.Instance.horarioActual;
         if (id == 0)            //esta es si estan en la u
         {
             
-            if (horario1 == Horario.mañana)
+            if (horario1 == Horario.dia)
             {
                 amigos.SetActive(true);
             }
@@ -28,12 +35,14 @@ public class Amigos : MonoBehaviour
                 amigos.SetActive(false);
             }
         }
+        
         if (id == 1)
         {
             
             if ( horario1 == Horario.mañana)
             {
                 amigos.SetActive(false);
+                return;
             }
             int random = Random.Range(0,3);
             Debug.Log(random);
@@ -41,7 +50,12 @@ public class Amigos : MonoBehaviour
             {
                 amigos.SetActive(true);
             }
+            else
+            {
+                amigos.SetActive(false);
+            }
         }
+        
 
     }
 }

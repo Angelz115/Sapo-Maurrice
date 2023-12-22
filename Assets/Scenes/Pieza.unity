@@ -819,6 +819,37 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &165735245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 165735246}
+  m_Layer: 0
+  m_Name: vacio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &165735246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 165735245}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &179699753
 GameObject:
   m_ObjectHideFlags: 0
@@ -5114,37 +5145,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1251787068}
   m_CullTransparentMesh: 1
---- !u!1 &1266742098
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1266742099}
-  m_Layer: 0
-  m_Name: SetStats
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1266742099
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1266742098}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1277178584
 GameObject:
   m_ObjectHideFlags: 0
@@ -7259,7 +7259,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1912648378}
-  m_LocalRotation: {x: -0.021878706, y: -0.012126047, z: -0.00026538526, w: 0.9996871}
+  m_LocalRotation: {x: -0.021878684, y: -0.012126012, z: -0.00026538424, w: 0.9996871}
   m_LocalPosition: {x: -1.2977676, y: -3.1674485, z: -82.853516}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8630,8 +8630,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   stats: {fileID: 0}
-  horarioActual: 0
-  dias: 0
+  escena: 0
   horarioInt: 0
   mensaje: {fileID: 2059339736}
   cajaTexto: {fileID: 65355011}
@@ -8641,9 +8640,13 @@ MonoBehaviour:
   cajaRelajo: {fileID: 979663802}
   cajaSalir: {fileID: 440010704}
   si_no: {fileID: 0}
-  tryM: {fileID: 0}
+  advertencia: {fileID: 0}
   Fade: {fileID: 1471986469}
   entretiempo: 1.4
+  dialogos: {fileID: 0}
+  cajaDialogos: {fileID: 0}
+  amigos_UI: {fileID: 0}
+  socializar: {fileID: 0}
 --- !u!4 &2100194007
 Transform:
   m_ObjectHideFlags: 0
@@ -8811,9 +8814,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1471986469}
     - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
+      propertyPath: escena
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
       propertyPath: mensaje
       value: 
       objectReference: {fileID: 2059339736}
+    - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
+      propertyPath: amigos_UI
+      value: 
+      objectReference: {fileID: 165735245}
     - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
       propertyPath: cajaSalir
       value: 
@@ -8834,6 +8845,10 @@ PrefabInstance:
       propertyPath: cajaEstudio
       value: 
       objectReference: {fileID: 17972403}
+    - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
+      propertyPath: cajaDialogos
+      value: 
+      objectReference: {fileID: 165735245}
     - target: {fileID: 8772722384858191958, guid: 9a83e2bbc697ce74985ba7479ae6ab73, type: 3}
       propertyPath: cajaSocializar
       value: 
